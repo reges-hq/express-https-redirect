@@ -1,6 +1,9 @@
 module.exports = function() {
   return function httpsRedirect(req, res, next) {
-    if (req.hostname === "localhost") {
+    if (
+      req.hostname === "localhost" ||
+      req.hostname.indexOf("default.svc.cluster.local") > -1
+    ) {
       return next();
     }
 
